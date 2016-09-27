@@ -1,0 +1,32 @@
+sandboxed: true
+version: 1.0.0
+maxFileSystemBytes: 512K
+start: manual
+
+
+executables:
+{
+    spiTest = ( spiTestComponent )
+}
+
+
+processes:
+{
+    envVars:
+    {
+        LE_LOG_LEVEL = DEBUG
+    }
+
+    run:
+    {
+        (spiTest)
+    }
+
+    faultAction: restart
+}
+
+bindings:
+{
+    spiTest.spiTestComponent.spi -> spiService.spi
+}
+

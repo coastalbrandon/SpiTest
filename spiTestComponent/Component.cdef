@@ -1,0 +1,12 @@
+requires:
+{
+    api:
+    {
+        spi = ${MANGOH_ROOT}/apps/SpiService/spi.api
+    }
+}
+
+sources:
+{
+    spiTest.c
+}
