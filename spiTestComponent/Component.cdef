@@ -3,6 +3,7 @@ requires:
     api:
     {
         spi = ${MANGOH_ROOT}/apps/SpiService/spi.api
+        ${MANGOH_ROOT}/apps/MuxControl/mangoh_muxCtrl.api
     }
 }
 
