@@ -1,0 +1,7 @@
+# ninja log v5
+1	152	0	_build_spiTest/wp85/component/e8846d2f677e31ab648379826a403b30/obj/_componentMain.c.o	ef84c9439bf4918d
+1	157	0	_build_spiTest/wp85/app/spiTest/obj/spiTest/_main.c.o	6746bc72a3905732
+1	373	0	_build_spiTest/wp85/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_client.c	db62bbb45468420a
+1	373	0	_build_spiTest/wp85/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_interface.h	db62bbb45468420a
+1	373	0	_build_spiTest/wp85/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_messages.h	db62bbb45468420a
+373	531	0	_build_spiTest/wp85/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_client.c.o	95c688d29e367567

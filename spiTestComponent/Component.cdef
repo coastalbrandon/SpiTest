@@ -2,7 +2,7 @@ requires:
 {
     api:
     {
-        spi = ${LEGATO_ROOT}/apps/platformServices/spiService.adef
+        spi = ${LEGATO_ROOT}/interfaces/le_spi.api
     }
 }
 
