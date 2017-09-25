@@ -12,9 +12,9 @@
 extern "C" {
 #endif
 
-extern const char* _spiTestComponent_spi_ServiceInstanceName;
-const char** spi_ServiceInstanceNamePtr = &_spiTestComponent_spi_ServiceInstanceName;
-void spi_ConnectService(void);
+extern const char* _spiTestComponent_le_spi_ServiceInstanceName;
+const char** le_spi_ServiceInstanceNamePtr = &_spiTestComponent_le_spi_ServiceInstanceName;
+void le_spi_ConnectService(void);
 // Component log session variables.
 le_log_SessionRef_t spiTestComponent_LogSession;
 le_log_Level_t* spiTestComponent_LogLevelFilterPtr;
@@ -29,7 +29,7 @@ __attribute__((constructor)) void _spiTestComponent_Init(void)
     LE_DEBUG("Initializing spiTestComponent component library.");
 
     // Connect client-side IPC interfaces.
-    spi_ConnectService();
+    le_spi_ConnectService();
 
     // Register the component with the Log Daemon.
     spiTestComponent_LogSession = log_RegComponent("spiTestComponent", &spiTestComponent_LogLevelFilterPtr);

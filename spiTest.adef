@@ -1,12 +1,13 @@
 sandboxed: true
 version: 1.0.0
 maxFileSystemBytes: 512K
-start: manual
+start: auto
 
 
 executables:
 {
     spiTest = ( spiTestComponent )
+    spiService = ( $LEGATO_ROOT/components/spiService )
 }
 
 
@@ -27,19 +28,19 @@ processes:
 
 bindings:
 {
-    spiTest.spiTestComponent.spi -> spiService.spi
+    spiTest.spiTestComponent.le_spi -> spiService.le_spi
 }
-/*
+
 requires:
 {
     device:
     {
-        [rw] /dev/spidev0.0 /dev/
+        //[rw] /dev/spidev0.0 /dev/
     }
 }
 
 extern:
 {
-    spiService.spiService.le_spi
+   spiService.spiService.le_spi
 }
-*/
+

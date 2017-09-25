@@ -2,7 +2,7 @@ requires:
 {
     api:
     {
-        spi = ${LEGATO_ROOT}/interfaces/le_spi.api
+        le_spi = ${LEGATO_ROOT}/interfaces/le_spi.api
     }
 }
 

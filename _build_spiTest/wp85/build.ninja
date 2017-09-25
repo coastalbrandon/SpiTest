@@ -113,14 +113,38 @@ rule BinPackApp
             rm $workingDir/info.properties $workingDir/root.cfg && $
             tar cjf $out -C $workingDir/ .
 
-build _build_spiTest/wp85/staging/read-only/lib/libComponent_spiTestComponent.so: LinkCLib $builddir/component/e8846d2f677e31ab648379826a403b30/obj/a6587a431f151280231ad04de85b375b.o $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_client.c.o $builddir/component/e8846d2f677e31ab648379826a403b30/obj/_componentMain.c.o | /home/mangoh/legato_framework/legato/build/wp85/framework/lib/liblegato.so
+build _build_spiTest/wp85/staging/read-only/lib/libComponent_spiTestComponent.so: LinkCLib $builddir/component/e8846d2f677e31ab648379826a403b30/obj/a6587a431f151280231ad04de85b375b.o $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_client.c.o $builddir/component/e8846d2f677e31ab648379826a403b30/obj/_componentMain.c.o | /home/mangoh/legato_framework/legato/build/wp85/framework/lib/liblegato.so
   ldFlags =  -L_build_spiTest/wp85/staging/read-only/lib -Wl,--enable-new-dtags,-rpath="\$$ORIGIN/../lib" "-L$$LEGATO_BUILD/framework/lib" -llegato -lpthread -lrt -lm
 
-build $builddir/component/e8846d2f677e31ab648379826a403b30/obj/a6587a431f151280231ad04de85b375b.o: CompileC /home/mangoh/sensortests/SpiTest/spiTestComponent/spiTest.c || $builddir/ $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_interface.h $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_messages.h
+build $builddir/component/e8846d2f677e31ab648379826a403b30/obj/a6587a431f151280231ad04de85b375b.o: CompileC /home/mangoh/sensortests/SpiTest/spiTestComponent/spiTest.c || $builddir/ $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_interface.h $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_messages.h
   cFlags = $cFlags -I$builddir/component/e8846d2f677e31ab648379826a403b30/src -I$builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client -DLE_COMPONENT_NAME=spiTestComponent -DLE_LOG_SESSION=spiTestComponent_LogSession  -DLE_LOG_LEVEL_FILTER_PTR=spiTestComponent_LogLevelFilterPtr  "-DCOMPONENT_INIT=LE_CI_LINKAGE LE_SHARED void _spiTestComponent_COMPONENT_INIT()"
 
 build $builddir/component/e8846d2f677e31ab648379826a403b30/obj/_componentMain.c.o: CompileC $builddir/component/e8846d2f677e31ab648379826a403b30/src/_componentMain.c
   cFlags = $cFlags -I$builddir/component/e8846d2f677e31ab648379826a403b30/src -I$builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client -DLE_COMPONENT_NAME=spiTestComponent -DLE_LOG_SESSION=spiTestComponent_LogSession  -DLE_LOG_LEVEL_FILTER_PTR=spiTestComponent_LogLevelFilterPtr  "-DCOMPONENT_INIT=LE_CI_LINKAGE LE_SHARED void _spiTestComponent_COMPONENT_INIT()"
+
+build _build_spiTest/wp85/staging/read-only/lib/libComponent_spiService.so: LinkCLib $builddir/component/470b8b734dc2f0091ae282cc3019c288/obj/b9cd67ebae14f97c7ff3357c8b14d01f.o $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server/le_spi_server.o $builddir/component/470b8b734dc2f0091ae282cc3019c288/obj/_componentMain.c.o | /home/mangoh/legato_framework/legato/build/wp85/framework/lib/liblegato.so _build_spiTest/wp85/staging/read-only/lib/libComponent_spiLibrary.so /home/mangoh/legato_framework/legato/build/wp85/framework/lib/liblegato.so
+  ldFlags =  -L_build_spiTest/wp85/staging/read-only/lib -Wl,--enable-new-dtags,-rpath="\$$ORIGIN/../lib" "-L_build_spiTest/wp85/staging/read-only/lib" -lComponent_spiLibrary "-L$$LEGATO_BUILD/framework/lib" -llegato -lpthread -lrt -lm
+
+build $builddir/component/470b8b734dc2f0091ae282cc3019c288/obj/b9cd67ebae14f97c7ff3357c8b14d01f.o: CompileC /home/mangoh/legato_framework/legato/components/spiService/spiService.c || $builddir/ $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server/le_spi_server.h $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server/le_spi_messages.h
+  cFlags = $cFlags -I$builddir/component/470b8b734dc2f0091ae282cc3019c288/src -I$builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server -DLE_COMPONENT_NAME=spiService -DLE_LOG_SESSION=spiService_LogSession  -DLE_LOG_LEVEL_FILTER_PTR=spiService_LogLevelFilterPtr  "-DCOMPONENT_INIT=LE_CI_LINKAGE LE_SHARED void _spiService_COMPONENT_INIT()" -std=c99 -I/home/mangoh/legato_framework/legato/components/spiLibrary
+
+build $builddir/component/470b8b734dc2f0091ae282cc3019c288/obj/_componentMain.c.o: CompileC $builddir/component/470b8b734dc2f0091ae282cc3019c288/src/_componentMain.c
+  cFlags = $cFlags -I$builddir/component/470b8b734dc2f0091ae282cc3019c288/src -I$builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server -DLE_COMPONENT_NAME=spiService -DLE_LOG_SESSION=spiService_LogSession  -DLE_LOG_LEVEL_FILTER_PTR=spiService_LogLevelFilterPtr  "-DCOMPONENT_INIT=LE_CI_LINKAGE LE_SHARED void _spiService_COMPONENT_INIT()"
+
+build _build_spiTest/wp85/staging/read-only/lib/libComponent_spiLibrary.so: LinkCLib $builddir/component/436db28254d09b60bf0fe99abe9c6291/obj/162c9ef25237ac1c4c4c0aa981796021.o $builddir/component/436db28254d09b60bf0fe99abe9c6291/obj/_componentMain.c.o | /home/mangoh/legato_framework/legato/build/wp85/framework/lib/liblegato.so
+  ldFlags =  -L_build_spiTest/wp85/staging/read-only/lib -Wl,--enable-new-dtags,-rpath="\$$ORIGIN/../lib" "-L$$LEGATO_BUILD/framework/lib" -llegato -lpthread -lrt -lm
+
+build $builddir/component/436db28254d09b60bf0fe99abe9c6291/obj/162c9ef25237ac1c4c4c0aa981796021.o: CompileC /home/mangoh/legato_framework/legato/components/spiLibrary/le_spiLibrary.c
+  cFlags = $cFlags -I$builddir/component/436db28254d09b60bf0fe99abe9c6291/src -DLE_COMPONENT_NAME=spiLibrary -DLE_LOG_SESSION=spiLibrary_LogSession  -DLE_LOG_LEVEL_FILTER_PTR=spiLibrary_LogLevelFilterPtr  "-DCOMPONENT_INIT=LE_CI_LINKAGE LE_SHARED void _spiLibrary_COMPONENT_INIT()" -std=c99
+
+build $builddir/component/436db28254d09b60bf0fe99abe9c6291/obj/_componentMain.c.o: CompileC $builddir/component/436db28254d09b60bf0fe99abe9c6291/src/_componentMain.c
+  cFlags = $cFlags -I$builddir/component/436db28254d09b60bf0fe99abe9c6291/src -DLE_COMPONENT_NAME=spiLibrary -DLE_LOG_SESSION=spiLibrary_LogSession  -DLE_LOG_LEVEL_FILTER_PTR=spiLibrary_LogLevelFilterPtr  "-DCOMPONENT_INIT=LE_CI_LINKAGE LE_SHARED void _spiLibrary_COMPONENT_INIT()"
+
+build $builddir/app/spiTest/obj/spiService/_main.c.o: CompileC _build_spiTest/wp85/app/spiTest/src/spiService/_main.c
+  cFlags = $cFlags -DLE_COMPONENT_NAME=spiService_exe -DLE_LOG_SESSION=spiService_exe_LogSession -DLE_LOG_LEVEL_FILTER_PTR=spiService_exe_LogLevelFilterPtr 
+
+build $builddir/app/spiTest/staging/read-only/bin/spiService: LinkCExe $builddir/app/spiTest/obj/spiService/_main.c.o | _build_spiTest/wp85/staging/read-only/lib/libComponent_spiLibrary.so /home/mangoh/legato_framework/legato/build/wp85/framework/lib/liblegato.so _build_spiTest/wp85/staging/read-only/lib/libComponent_spiService.so /home/mangoh/legato_framework/legato/build/wp85/framework/lib/liblegato.so /home/mangoh/legato_framework/legato/build/$target/framework/lib/liblegato.so
+  ldFlags = -rdynamic -Wl,--enable-new-dtags,-rpath="\$$ORIGIN/../lib" -L_build_spiTest/wp85/staging/read-only/lib "-L_build_spiTest/wp85/staging/read-only/lib" -lComponent_spiService "-L_build_spiTest/wp85/staging/read-only/lib" -lComponent_spiLibrary "-L_build_spiTest/wp85/staging/read-only/lib" -lComponent_spiService "-L_build_spiTest/wp85/staging/read-only/lib" -lComponent_spiLibrary "-L$$LEGATO_BUILD/framework/lib" -llegato -lpthread -lrt -ldl -lm $ldFlags
 
 build $builddir/app/spiTest/obj/spiTest/_main.c.o: CompileC _build_spiTest/wp85/app/spiTest/src/spiTest/_main.c
   cFlags = $cFlags -DLE_COMPONENT_NAME=spiTest_exe -DLE_LOG_SESSION=spiTest_exe_LogSession -DLE_LOG_LEVEL_FILTER_PTR=spiTest_exe_LogLevelFilterPtr 
@@ -130,7 +154,11 @@ build $builddir/app/spiTest/staging/read-only/bin/spiTest: LinkCExe $builddir/ap
 
 build $builddir/app/spiTest/staging/read-only/lib/libComponent_spiTestComponent.so : CopyFile _build_spiTest/wp85/staging/read-only/lib/libComponent_spiTestComponent.so
 
-build $builddir/app/spiTest/staging/info.properties : MakeAppInfoProperties | $builddir/app/spiTest/staging/read-only/lib/libComponent_spiTestComponent.so $builddir/app/spiTest/staging/read-only/bin/spiTest $builddir/app/spiTest/staging/root.cfg
+build $builddir/app/spiTest/staging/read-only/lib/libComponent_spiService.so : CopyFile _build_spiTest/wp85/staging/read-only/lib/libComponent_spiService.so
+
+build $builddir/app/spiTest/staging/read-only/lib/libComponent_spiLibrary.so : CopyFile _build_spiTest/wp85/staging/read-only/lib/libComponent_spiLibrary.so
+
+build $builddir/app/spiTest/staging/info.properties : MakeAppInfoProperties | $builddir/app/spiTest/staging/read-only/lib/libComponent_spiLibrary.so $builddir/app/spiTest/staging/read-only/lib/libComponent_spiService.so $builddir/app/spiTest/staging/read-only/lib/libComponent_spiTestComponent.so $builddir/app/spiTest/staging/read-only/bin/spiService $builddir/app/spiTest/staging/read-only/bin/spiTest $builddir/app/spiTest/staging/root.cfg
   name = spiTest
   version = 1.0.0
   workingDir = $builddir/app/spiTest
@@ -140,12 +168,19 @@ build spiTest.$target.update: PackApp $builddir/app/spiTest/staging/info.propert
   version = 1.0.0
   workingDir = $builddir/app/spiTest
 
-build $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_client.c.o: CompileC $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_client.c | $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_messages.h $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_interface.h
+build $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server/le_spi_server.o: CompileC $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server/le_spi_server.c | $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server/le_spi_messages.h $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server/le_spi_server.h
   cFlags = $cFlags
 
-build $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_client.c $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_interface.h $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_messages.h: GenInterfaceCode /home/mangoh/legato_framework/legato/interfaces/le_spi.api |
-  ifgenFlags = --gen-client --gen-interface --gen-local --name-prefix spi $ifgenFlags
+build $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server/le_spi_server.c $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server/le_spi_server.h $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server/le_spi_messages.h: GenInterfaceCode /home/mangoh/legato_framework/legato/interfaces/le_spi.api |
+  ifgenFlags = --gen-server --gen-server-interface --gen-local --name-prefix le_spi $ifgenFlags
+  outputDir = $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/server
+
+build $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_client.c.o: CompileC $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_client.c | $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_messages.h $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_interface.h
+  cFlags = $cFlags
+
+build $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_client.c $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_interface.h $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_messages.h: GenInterfaceCode /home/mangoh/legato_framework/legato/interfaces/le_spi.api |
+  ifgenFlags = --gen-client --gen-interface --gen-local --name-prefix le_spi $ifgenFlags
   outputDir = $builddir/api/6d3e5ced4ae80eb2869e105c6d6e0179/client
 
-build _build_spiTest/wp85/build.ninja: RegenNinjaScript | /home/mangoh/sensortests/SpiTest/spiTest.adef /home/mangoh/legato_framework/legato/interfaces/le_spi.api /home/mangoh/sensortests/SpiTest/spiTestComponent/Component.cdef
+build _build_spiTest/wp85/build.ninja: RegenNinjaScript | /home/mangoh/sensortests/SpiTest/spiTest.adef /home/mangoh/legato_framework/legato/components/spiLibrary/Component.cdef /home/mangoh/legato_framework/legato/components/spiService/Component.cdef /home/mangoh/legato_framework/legato/interfaces/le_spi.api /home/mangoh/sensortests/SpiTest/spiTestComponent/Component.cdef
 
