@@ -12,7 +12,7 @@ AR758X_TOOLCHAIN_PREFIX=arm-poky-linux-gnueabi-
 QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
 BRNKL_ROOT=/home/mangoh/BRNKL
 WINDOWID=52428810
-OLDPWD=/home/mangoh/legato_framework/legato
+OLDPWD=/home/mangoh/sensortests
 UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1581
 GNOME_KEYRING_CONTROL=
 GTK_MODULES=gail:atk-bridge

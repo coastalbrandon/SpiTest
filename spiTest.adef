@@ -14,7 +14,7 @@ processes:
 {
     envVars:
     {
-        LE_LOG_LEVEL = DEBUG
+        LE_LOG_LEVEL = INFO
     }
 
     run:
