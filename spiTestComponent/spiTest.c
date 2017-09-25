@@ -12,7 +12,7 @@
 le_spi_DeviceHandleRef_t spiHandle;
 
 unsigned char chanBits;
-uint8_t chan = 0; //read from channel 1
+//uint8_t chan = 0; //read from channel 1
 uint32_t a2dVal = 0;
 float voltage = 0.0;
 
@@ -21,11 +21,11 @@ uint8_t txData [3];
 
 le_result_t res;
 
-void pollMCP
+float readVoltage
 (
-	le_timer_Ref_t spiTimerRef
-)
-{
+	uint8_t chan
+){
+ 
     chanBits = (~0) << 7;
     chanBits = chanBits | (chan << 4);
 
@@ -34,6 +34,7 @@ void pollMCP
     txData [1] |= (chan << 4);
     txData [2] = 0x0; //dont care
 
+    
     LE_INFO("Reading MCP at channel %d: ", chan);
     size_t readBufferSize = NUM_ARRAY_MEMBERS(rxData);
     res = le_spi_WriteReadFD(spiHandle, txData, NUM_ARRAY_MEMBERS(txData), rxData, &readBufferSize);
@@ -43,16 +44,31 @@ void pollMCP
     a2dVal = (a2dVal << 8) | rxData[2];
     voltage = a2dVal * 0.0036 - 0.6825;
 
-    LE_INFO("txData[0]= %d", txData[0]);
-    LE_INFO("txData[1]= %d", txData[1]);
-    LE_INFO("txData[2]= %d", txData[2]);
+    LE_DEBUG("txData[0]= %d", txData[0]);
+    LE_DEBUG("txData[1]= %d", txData[1]);
+    LE_DEBUG("txData[2]= %d", txData[2]);
     
-    LE_INFO("rxData[0]= %d", rxData[0]);
-    LE_INFO("rxData[1]= %d", rxData[1]);
-    LE_INFO("rxData[2]= %d", rxData[2]);
-    LE_INFO("A2D = %d", a2dVal);
+    LE_DEBUG("rxData[0]= %d", rxData[0]);
+    LE_DEBUG("rxData[1]= %d", rxData[1]);
+    LE_DEBUG("rxData[2]= %d", rxData[2]);
+    LE_DEBUG("A2D = %d", a2dVal);
+
+    //Output the voltage to the console
     LE_INFO("VOLTAGE = %f", voltage);
- 
+
+return voltage;
+}
+
+void pollMCP
+(
+	le_timer_Ref_t spiTimerRef
+)
+{
+    LE_INFO("===============================");
+    readVoltage(0);
+    readVoltage(1);
+    readVoltage(2);
+    readVoltage(3); 
 }
 
 COMPONENT_INIT
