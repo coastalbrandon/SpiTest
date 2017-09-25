@@ -34,10 +34,9 @@ COMPONENT_INIT
     LE_INFO("Configuring SPI");
     le_spi_Configure(spiHandle, 0, 8, 1000000, 0);
 
-    LE_INFO("Testing WriteReadHD, read ID of device");
-    size_t readBufferSize = NUM_ARRAY_MEMBERS(txData);    
-    le_spi_WriteReadHD(spiHandle, txData, NUM_ARRAY_MEMBERS(txData), rxData,
-                   &readBufferSize);
+    LE_INFO("Reading from the MCP3004 specified channel");
+    size_t readBufferSize = NUM_ARRAY_MEMBERS(rxData);    
+    le_spi_WriteReadHD(spiHandle, txData, NUM_ARRAY_MEMBERS(txData), rxData, &readBufferSize);
     LE_FATAL_IF(res != LE_OK, "le_spi_WriteReadHD failed with result=%s", LE_RESULT_TXT(res));
     
     a2dVal = (rxData[1]<<4) & 0b1100000000; //merge rxData[1] and rxData[2] to get result
