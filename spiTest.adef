@@ -29,4 +29,17 @@ bindings:
 {
     spiTest.spiTestComponent.spi -> spiService.spi
 }
+/*
+requires:
+{
+    device:
+    {
+        [rw] /dev/spidev0.0 /dev/
+    }
+}
 
+extern:
+{
+    spiService.spiService.le_spi
+}
+*/
