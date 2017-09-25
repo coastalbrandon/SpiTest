@@ -1,7 +1,8 @@
-This is an example program that goes with  beta release of the SPI service. It performs various SPI functions on Dust IoT module
+This is an example program that allows legato's SPI service talk to an MCP3004 analog to digital controller
 
 To use this example you need to do the following:
 
-1. Follow instructions on 'https://github.com/mangOH/SpiService'
-1. Then install the test program and run it. 
+1. Follow instructions on 'http://legato.io/legato-docs/latest/howToSPI.html'
+2. Wire up an MCP3004 to your legato SPI SBC
+3. Run the test app
 
