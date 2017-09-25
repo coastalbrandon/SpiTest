@@ -24,63 +24,34 @@ uint8_t read_ID_tx[] =
     0x9F
 };
 
-uint8_t ID_rx[2];
+uint8_t spiData[3];
+unsigned char chanBits;
+int chan = 1; //read from channel 1
 
-uint8_t read_buffer_tx[] =
-{
-    0x03,0x01,0x01,0x02
-};
+chanBits = 0b10000000 | (chan << 4);
 
-uint8_t write_buffer2_tx[] =
-{
-    0x44, 0x01, 0x01, 0x02, 0x45, 0x56,0x67,0x44
-};
-
-
-
-uint8_t write_buffer_tx[] =
-{
-    0xC7, 0x94, 0x80, 0x9A
-};
-
-
-uint8_t  status_rx[3] = {0x00, };
-uint8_t status_tx[1] = {0xD7};
-uint8_t  read_rx[8] = {0x00, };
-uint8_t  write_rx[4] = {0x00, };
-
+spiData [0] = 1; //start bit
+spiData [1] = chanBits ;
+spiData [2] = 0; //dont care
 
 
 COMPONENT_INIT
 {
     LE_INFO("===========> SPI application has started");
-    
-    LE_FATAL_IF(mangoh_muxCtrl_Iot1Spi1On() != LE_OK, "Couldn't enable SPI on IoT slot 1");
 
+    LE_INFO("Opening SPI");
     le_result_t res;
-
-    spi_DeviceHandleRef_t spiHandle;
-    res = spi_Open("sierra_spi", &spiHandle);
-    LE_FATAL_IF(res != LE_OK, "spi_Open failed with result=%d", res);
+    res = le_spi_Open("spidev0.0", &spiHandle);
+    LE_FATAL_IF(res != LE_OK, "le_spi_Open failed with result=%s", LE_RESULT_TXT(res));
 
     LE_INFO("Configuring SPI");
-    spi_Configure(spiHandle, SPI_SPI_MODE_0, 8, 960000, 0);
+    le_spi_Configure(spiHandle, 0, 8, 960000, 0);
 
     LE_INFO("Testing WriteReadHD, read ID of device");
-    size_t readBufferSize = NUM_ARRAY_MEMBERS(ID_rx);
-    spi_WriteReadHD(spiHandle, read_ID_tx, NUM_ARRAY_MEMBERS(read_ID_tx), ID_rx, &readBufferSize);
-
-
-    LE_INFO("Testing WriteHD, Bulk erase");
-    spi_WriteHD(spiHandle, write_buffer_tx, NUM_ARRAY_MEMBERS(write_buffer_tx));
-
-    LE_INFO("Testing WrieHD, Buffer write");
-    spi_WriteHD(spiHandle, write_buffer2_tx, NUM_ARRAY_MEMBERS(write_buffer2_tx));
-
-    LE_INFO("Testing WriteReadHDi, read buffer write value");
-    size_t readRxSize = NUM_ARRAY_MEMBERS(read_rx);
-    spi_WriteReadHD(
-        spiHandle, read_buffer_tx, NUM_ARRAY_MEMBERS(read_buffer_tx), read_rx, &readRxSize);
+    size_t readBufferSize = NUM_ARRAY_MEMBERS(ID_rx);    
+    le_spi_WriteReadHD(spiHandle, read_ID_tx, NUM_ARRAY_MEMBERS(read_ID_tx), spiData,
+                   &readBufferSize);
+    LE_FATAL_IF(res != LE_OK, "le_spi_WriteReadHD failed with result=%s", LE_RESULT_TXT(res));
 
     spi_Close(spiHandle);
 }
