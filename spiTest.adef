@@ -28,6 +28,5 @@ processes:
 bindings:
 {
     spiTest.spiTestComponent.spi -> spiService.spi
-    spiTest.spiTestComponent.mangoh_muxCtrl -> muxCtrlService.mangoh_muxCtrl
 }
 
