@@ -11,7 +11,7 @@
 extern "C" {
 #endif
 
-#include "api/6d3e5ced4ae80eb2869e105c6d6e0179/client/spi_interface.h"
+#include "api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_interface.h"
 
 #ifdef __cplusplus
 }

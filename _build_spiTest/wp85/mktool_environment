@@ -12,8 +12,8 @@ AR758X_TOOLCHAIN_PREFIX=arm-poky-linux-gnueabi-
 QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
 BRNKL_ROOT=/home/mangoh/BRNKL
 WINDOWID=52428810
-OLDPWD=/home/mangoh/sensortests
-UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1581
+OLDPWD=/home/mangoh
+UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1497
 GNOME_KEYRING_CONTROL=
 GTK_MODULES=gail:atk-bridge
 AR759X_TOOLCHAIN_PREFIX=arm-poky-linux-gnueabi-
@@ -29,7 +29,7 @@ DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
 AR759X_TOOLCHAIN_DIR=/opt/swi/y17-ext/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi
 XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg
 WP750X_TOOLCHAIN_DIR=/opt/swi/y17-ext/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi
-PATH=/home/mangoh/legato_framework/legato/bin:/home/mangoh/legato_framework/legato/bin:/home/mangoh/bin:/home/mangoh/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/mangoh/legato_framework/legato/build/localhost/bin:/home/mangoh/legato_framework/legato/build/localhost/bin
+PATH=/home/mangoh/legato_framework/legato/bin:/home/mangoh/bin:/home/mangoh/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/mangoh/legato_framework/legato/build/localhost/bin
 DESKTOP_SESSION=ubuntu
 QT_IM_MODULE=ibus
 PWD=/home/mangoh/sensortests/SpiTest
@@ -61,7 +61,7 @@ LOGNAME=mangoh
 COMPIZ_BIN_PATH=/usr/bin/
 QT4_IM_MODULE=xim
 XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
-DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-S3FxSVTM3b
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-gVOXn0XAux
 LESSOPEN=| /usr/bin/lesspipe %s
 LEGATO_ROOT=/home/mangoh/legato_framework/legato
 INSTANCE=

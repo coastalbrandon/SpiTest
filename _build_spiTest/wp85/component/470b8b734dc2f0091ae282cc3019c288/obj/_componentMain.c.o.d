@@ -1,5 +1,5 @@
-_build_spiTest/wp85/component/e8846d2f677e31ab648379826a403b30/obj/a6587a431f151280231ad04de85b375b.o: \
- /home/mangoh/sensortests/SpiTest/spiTestComponent/spiTest.c \
+_build_spiTest/wp85/component/470b8b734dc2f0091ae282cc3019c288/obj/_componentMain.c.o: \
+ _build_spiTest/wp85/component/470b8b734dc2f0091ae282cc3019c288/src/_componentMain.c \
  /home/mangoh/legato_framework/legato/framework/c/inc/legato.h \
  /home/mangoh/legato_framework/legato/framework/c/inc/le_build_config.h \
  /home/mangoh/legato_framework/legato/framework/c/inc/le_basics.h \
@@ -33,5 +33,5 @@ _build_spiTest/wp85/component/e8846d2f677e31ab648379826a403b30/obj/a6587a431f151
  /home/mangoh/legato_framework/legato/framework/c/inc/le_crc.h \
  /home/mangoh/legato_framework/legato/framework/c/inc/le_fs.h \
  /home/mangoh/legato_framework/legato/framework/c/inc/le_rand.h \
- _build_spiTest/wp85/component/e8846d2f677e31ab648379826a403b30/src/interfaces.h \
- _build_spiTest/wp85/api/6d3e5ced4ae80eb2869e105c6d6e0179/client/le_spi_interface.h
+ /home/mangoh/legato_framework/legato/framework/c/inc/../src/eventLoop.h \
+ /home/mangoh/legato_framework/legato/framework/c/inc/../src/log.h
