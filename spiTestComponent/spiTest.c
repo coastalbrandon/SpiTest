@@ -19,14 +19,13 @@
 #include "interfaces.h"
 
 
-uint8_t read_ID_tx[] =
-{
-    0x9F
-};
 
 uint8_t spiData[3];
 unsigned char chanBits;
 int chan = 1; //read from channel 1
+int a2dVal = 0;
+
+uint8_t returnedData[3];
 
 chanBits = 0b10000000 | (chan << 4);
 
@@ -45,13 +44,18 @@ COMPONENT_INIT
     LE_FATAL_IF(res != LE_OK, "le_spi_Open failed with result=%s", LE_RESULT_TXT(res));
 
     LE_INFO("Configuring SPI");
-    le_spi_Configure(spiHandle, 0, 8, 960000, 0);
+    le_spi_Configure(spiHandle, 0, 8, 1000000, 0);
 
     LE_INFO("Testing WriteReadHD, read ID of device");
-    size_t readBufferSize = NUM_ARRAY_MEMBERS(ID_rx);    
-    le_spi_WriteReadHD(spiHandle, read_ID_tx, NUM_ARRAY_MEMBERS(read_ID_tx), spiData,
+    size_t readBufferSize = NUM_ARRAY_MEMBERS(spiData);    
+    le_spi_WriteReadHD(spiHandle, spiData, NUM_ARRAY_MEMBERS(spiData), returnedData,
                    &readBufferSize);
     LE_FATAL_IF(res != LE_OK, "le_spi_WriteReadHD failed with result=%s", LE_RESULT_TXT(res));
+    
+    a2dVal = (returnedData[1]<<4) & 0b1100000000; //merge returnedData[1] and returnedData[2] to get result
+    a2dVal |= (returnedData[2] & 0xff);
+    
+    LE_INFO("A2D Value= %d", a2dVal);
 
     spi_Close(spiHandle);
 }
