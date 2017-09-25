@@ -2,8 +2,7 @@ requires:
 {
     api:
     {
-        spi = ${MANGOH_ROOT}/apps/SpiService/spi.api
-        ${MANGOH_ROOT}/apps/MuxControl/mangoh_muxCtrl.api
+        spi = ${LEGATO_ROOT}/apps/platformServices/spiService.adef
     }
 }
 
